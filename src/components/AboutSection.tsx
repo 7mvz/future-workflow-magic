@@ -1,6 +1,6 @@
 
 import { motion } from "framer-motion";
-import { Gear, Activity, CircleDot } from "lucide-react";
+import { Cog, Activity, CircleDot } from "lucide-react";
 
 const AboutSection = () => {
   return (
@@ -62,7 +62,7 @@ const AboutSection = () => {
                 transition={{ duration: 8, repeat: Infinity, ease: "linear" }}
                 className="absolute inset-0"
               >
-                <Gear className="w-16 h-16 text-primary" />
+                <Cog className="w-16 h-16 text-primary" />
               </motion.div>
             </div>
             <h3 className="text-xl font-bold mb-4">Automation Expertise</h3>
