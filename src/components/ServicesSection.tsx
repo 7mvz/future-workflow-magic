@@ -9,7 +9,9 @@ const ChatDemo = () => {
   const [isActive, setIsActive] = useState(false);
   const conversation = [
     { user: true, message: "What are your pricing plans?" },
-    { user: false, message: "Sure! We offer Basic ($997/month), Pro ($3997/month), and Custom solutions. Want to see details?" }
+    { user: false, message: "Sure! We offer Basic ($997/month), Pro ($3997/month), and Custom solutions. Want to see details?" },
+    { user: true, message: "Do you integrate with WhatsApp?" },
+    { user: false, message: "Yes! Our chatbots work with WhatsApp, Instagram, and websites." }
   ];
 
   return (
@@ -27,7 +29,10 @@ const ChatDemo = () => {
             className={`flex ${msg.user ? "justify-end" : "justify-start"}`}
           >
             <div className={`max-w-[80%] p-3 rounded-lg ${msg.user ? "bg-primary/20" : "bg-white/10"}`}>
-              <p className="text-sm">{msg.message}</p>
+              <p className="text-sm">
+                <span className="font-semibold">{msg.user ? "User: " : "Bot: "}</span>
+                {msg.message}
+              </p>
             </div>
           </motion.div>
         ))}
@@ -52,6 +57,7 @@ const VoiceDemo = () => {
           className="relative overflow-hidden"
           onClick={() => setIsPlaying(!isPlaying)}
         >
+          <Mic className={`w-4 h-4 mr-2 ${isPlaying ? "text-primary" : ""}`} />
           {isPlaying ? "Stop" : "Play Demo"}
           {isPlaying && (
             <motion.div
