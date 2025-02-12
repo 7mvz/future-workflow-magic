@@ -55,13 +55,13 @@ const industries = [
   },
   {
     icon: Globe,
-    title: "Others",
-    summary: "Optimize workflows with custom AI solutions",
+    title: "More Industries",
+    summary: "AI solutions for any industry—automate workflows, enhance efficiency, and scale effortlessly!",
     solutions: [
       "Custom AI Development",
       "Process Automation",
       "Data Analysis",
-      "Efficiency Optimization"
+      "Industry-Specific Solutions"
     ],
     delay: 1.0
   }
@@ -77,13 +77,13 @@ const IndustriesSection = () => {
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 0.1 }}
             transition={{ duration: 0.8 }}
-            className="absolute top-0 left-1/4 w-96 h-96 bg-primary/20 rounded-full blur-3xl"
+            className="absolute top-0 left-1/4 w-96 h-96 bg-primary/20 rounded-full blur-3xl animate-pulse"
           />
           <motion.div
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 0.1 }}
             transition={{ duration: 0.8 }}
-            className="absolute bottom-0 right-1/4 w-96 h-96 bg-primary/20 rounded-full blur-3xl"
+            className="absolute bottom-0 right-1/4 w-96 h-96 bg-primary/20 rounded-full blur-3xl animate-pulse"
           />
         </div>
 
