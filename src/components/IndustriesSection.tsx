@@ -8,9 +8,9 @@ const industries = [
   {
     icon: ShoppingBag,
     title: "E-commerce",
-    summary: "Transform your online store with AI-powered customer experiences",
+    summary: "Transform your online store with AI-powered experiences",
     solutions: [
-      "24/7 AI Customer Support Chatbots",
+      "24/7 AI Customer Support",
       "Smart Product Recommendations",
       "Automated Order Tracking",
       "Inventory Optimization"
@@ -20,10 +20,10 @@ const industries = [
   {
     icon: Building2,
     title: "Real Estate",
-    summary: "Revolutionize property management and customer service with AI",
+    summary: "Revolutionize property management with AI",
     solutions: [
       "AI Property Matching",
-      "Automated Property Valuations",
+      "Automated Valuations",
       "Virtual Property Tours",
       "Smart Document Processing"
     ],
@@ -32,31 +32,31 @@ const industries = [
   {
     icon: CreditCard,
     title: "Finance",
-    summary: "Enhance security and decision-making with AI-powered analysis",
+    summary: "Enhance security and decision-making with AI",
     solutions: [
       "Fraud Detection Systems",
       "Smart Investment Advisors",
       "Risk Assessment AI",
-      "Automated Compliance Checks"
+      "Automated Compliance"
     ],
     delay: 0.6
   },
   {
     icon: Heart,
     title: "Healthcare",
-    summary: "Improve patient care and operations with AI assistance",
+    summary: "Improve patient care with AI assistance",
     solutions: [
       "Medical Image Analysis",
       "Patient Care Assistants",
-      "Appointment Scheduling",
-      "Health Monitoring Systems"
+      "Smart Scheduling",
+      "Health Monitoring"
     ],
     delay: 0.8
   },
   {
     icon: Globe,
     title: "Others",
-    summary: "No matter your industry, our AI solutions optimize workflows",
+    summary: "Optimize workflows with custom AI solutions",
     solutions: [
       "Custom AI Development",
       "Process Automation",
@@ -92,18 +92,18 @@ const IndustriesSection = () => {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-          className="text-center mb-16"
+          className="text-center mb-12"
         >
-          <h2 className="text-4xl md:text-5xl font-display font-bold mb-6">
+          <h2 className="text-4xl md:text-5xl font-display font-bold mb-4">
             AI-Powered Solutions for Every Industry
           </h2>
-          <p className="text-lg md:text-xl text-gray-300 max-w-3xl mx-auto">
-            Discover how our AI solutions can transform your business, regardless of your industry
+          <p className="text-lg text-gray-300 max-w-2xl mx-auto">
+            Discover how our AI solutions can transform your business
           </p>
         </motion.div>
 
         {/* Industry Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6 mb-16">
           {industries.map((industry, index) => (
             <IndustryCard key={index} {...industry} />
           ))}
