@@ -24,10 +24,8 @@ const IndustryCard = ({ icon: Icon, title, summary, solutions, delay }: Industry
       onClick={() => setIsFlipped(!isFlipped)}
     >
       <motion.div
-        className="w-full h-full relative preserve-3d cursor-pointer"
         animate={{ rotateY: isFlipped ? 180 : 0 }}
         transition={{ duration: 0.6, delay: 0.2 }}
-        whileHover={{ scale: 1.02, transition: { duration: 0.2 } }}
         className="w-full h-full relative preserve-3d cursor-pointer shadow-lg hover:shadow-xl transition-shadow duration-300"
       >
         {/* Front of card */}
@@ -43,7 +41,7 @@ const IndustryCard = ({ icon: Icon, title, summary, solutions, delay }: Industry
             <p className="text-gray-300 text-sm leading-snug px-2">{summary}</p>
             <div className="absolute top-3 right-3 flex items-center space-x-1 bg-primary/10 px-2 py-0.5 rounded-full">
               <Zap className="w-3 h-3 text-primary" />
-              <span className="text-xs text-primary">AI-powered</span>
+              <span className="text-xs text-primary">Click for more</span>
             </div>
           </div>
         </div>

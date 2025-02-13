@@ -30,27 +30,19 @@ const VoiceAssistantDemo = () => {
             className="w-full relative overflow-hidden"
             onClick={() => setIsPlaying(!isPlaying)}
           >
-            <AnimatePresence mode="wait">
-              <motion.div
-                key={isPlaying ? "playing" : "stopped"}
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                exit={{ opacity: 0 }}
-                className="flex items-center justify-center"
-              >
-                {isPlaying ? (
-                  <>
-                    <Pause className="w-5 h-5 mr-2" />
-                    Stop
-                  </>
-                ) : (
-                  <>
-                    <Play className="w-5 h-5 mr-2" />
-                    Play Demo
-                  </>
-                )}
-              </motion.div>
-            </AnimatePresence>
+            <div className="flex items-center justify-center">
+              {isPlaying ? (
+                <>
+                  <Pause className="w-5 h-5 mr-2" />
+                  <span>Stop</span>
+                </>
+              ) : (
+                <>
+                  <Play className="w-5 h-5 mr-2" />
+                  <span>Play Demo</span>
+                </>
+              )}
+            </div>
           </Button>
           
           {isPlaying && (
