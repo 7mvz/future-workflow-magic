@@ -13,14 +13,30 @@ const Index = () => {
   return (
     <main className="relative min-h-screen overflow-hidden">
       <ParticleBackground />
-      <HeroSection />
-      <AboutSection />
-      <ServicesSection />
-      <ProcessSection />
-      <IndustriesSection />
-      <PricingSection />
-      <SuccessStoriesSection />
-      <FAQSection />
+      <section id="hero">
+        <HeroSection />
+      </section>
+      <section id="about">
+        <AboutSection />
+      </section>
+      <section id="services">
+        <ServicesSection />
+      </section>
+      <section id="process">
+        <ProcessSection />
+      </section>
+      <section id="industries">
+        <IndustriesSection />
+      </section>
+      <section id="pricing">
+        <PricingSection />
+      </section>
+      <section id="success-stories">
+        <SuccessStoriesSection />
+      </section>
+      <section id="faq">
+        <FAQSection />
+      </section>
     </main>
   );
 };

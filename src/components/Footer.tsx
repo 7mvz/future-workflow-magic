@@ -1,16 +1,14 @@
 
-import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { Mail, Phone, Linkedin, Youtube, Twitter, Instagram } from "lucide-react";
+import { scrollToSection } from "@/utils/scrollToSection";
 
 const quickLinks = [
-  { name: "Services", path: "/services" },
-  { name: "Process", path: "/process" },
-  { name: "Industries", path: "/industries" },
-  { name: "Pricing", path: "/pricing" },
-  { name: "Team", path: "/team" },
-  { name: "Contact", path: "/contact" },
-  { name: "FAQ", path: "/faq" },
+  { name: "Services", sectionId: "services" },
+  { name: "Process", sectionId: "process" },
+  { name: "Industries", sectionId: "industries" },
+  { name: "Pricing", sectionId: "pricing" },
+  { name: "FAQ", sectionId: "faq" },
 ];
 
 const socialLinks = [
@@ -32,7 +30,12 @@ const Footer = () => {
             transition={{ duration: 0.6 }}
             className="md:col-span-2 space-y-6"
           >
-            <h2 className="text-3xl font-display font-bold text-gradient">SimplerWork</h2>
+            <button
+              onClick={() => scrollToSection("hero")}
+              className="text-3xl font-display font-bold text-gradient"
+            >
+              SimplerWork
+            </button>
             <p className="text-gray-400 max-w-md leading-relaxed">
               Experience the future of work with our AI-powered automation solutions. Transform your business operations and unlock new possibilities.
             </p>
@@ -61,14 +64,14 @@ const Footer = () => {
           >
             <h3 className="text-lg font-semibold text-gradient">Navigation</h3>
             <ul className="space-y-4">
-              {quickLinks.slice(0, 4).map((link) => (
+              {quickLinks.map((link) => (
                 <li key={link.name}>
-                  <Link
-                    to={link.path}
+                  <button
+                    onClick={() => scrollToSection(link.sectionId)}
                     className="text-gray-400 hover:text-primary transition-colors"
                   >
                     {link.name}
-                  </Link>
+                  </button>
                 </li>
               ))}
             </ul>
@@ -117,18 +120,18 @@ const Footer = () => {
               © 2024 SimplerWork. All rights reserved.
             </p>
             <div className="flex gap-8 text-sm">
-              <Link
-                to="/terms"
+              <button
+                onClick={() => scrollToSection("terms")}
                 className="text-gray-400 hover:text-primary transition-colors"
               >
                 Terms & Conditions
-              </Link>
-              <Link
-                to="/privacy"
+              </button>
+              <button
+                onClick={() => scrollToSection("privacy")}
                 className="text-gray-400 hover:text-primary transition-colors"
               >
                 Privacy Policy
-              </Link>
+              </button>
             </div>
           </div>
         </motion.div>
