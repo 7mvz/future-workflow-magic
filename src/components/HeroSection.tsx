@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
 
-const WorkflowNode = ({ delay, x, y, color }: { delay: number; x: number; y: number; color: string }) => (
+const WorkflowNode = ({ delay, x, y, color, label }: { delay: number; x: number; y: number; color: string; label: string }) => (
   <motion.div
     initial={{ opacity: 0, scale: 0 }}
     animate={{ opacity: 1, scale: 1 }}
@@ -30,6 +30,9 @@ const WorkflowNode = ({ delay, x, y, color }: { delay: number; x: number; y: num
     >
       <div className={`w-4 h-4 rounded-full ${color} blur-sm`} />
       <div className={`w-3 h-3 rounded-full ${color} absolute top-0.5 left-0.5`} />
+      <div className="absolute -bottom-6 left-1/2 -translate-x-1/2 whitespace-nowrap text-xs text-gray-400">
+        {label}
+      </div>
     </motion.div>
   </motion.div>
 );
@@ -74,34 +77,44 @@ const ConnectingLine = ({ delay, start, end }: { delay: number; start: { x: numb
   </motion.div>
 );
 
-const FloatingDataPoint = ({ delay, x, y }: { delay: number; x: number; y: number }) => (
+const ProcessedIndicator = ({ delay, x, y }: { delay: number; x: number; y: number }) => (
   <motion.div
-    initial={{ opacity: 0, y: 20 }}
+    initial={{ opacity: 0, scale: 0 }}
     animate={{ 
       opacity: [0, 1, 0],
-      y: [y + 20, y, y - 20]
+      scale: [0.8, 1.2, 0.8]
     }}
     transition={{
-      duration: 2,
+      duration: 1.5,
       delay,
       repeat: Infinity,
-      repeatDelay: 3
+      repeatDelay: 2
     }}
-    className="absolute text-xs font-mono text-primary"
+    className="absolute text-xs font-semibold text-primary"
     style={{ left: `${x}%`, top: `${y}%` }}
   >
-    01101
+    Done in seconds!
   </motion.div>
 );
 
 const WorkflowAnimation = () => (
-  <div className="relative w-full h-32 mb-8">
-    {/* Nodes */}
-    <WorkflowNode delay={0} x={10} y={50} color="bg-primary" />
-    <WorkflowNode delay={0.3} x={30} y={20} color="bg-primary-light" />
-    <WorkflowNode delay={0.6} x={50} y={70} color="bg-primary" />
-    <WorkflowNode delay={0.9} x={70} y={30} color="bg-primary-light" />
-    <WorkflowNode delay={1.2} x={90} y={50} color="bg-primary" />
+  <div className="relative w-full h-40 mb-8">
+    {/* Task Labels at the top */}
+    <motion.div
+      initial={{ opacity: 0, y: -10 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ delay: 0.2 }}
+      className="absolute top-0 left-0 w-full text-center text-sm font-medium text-primary"
+    >
+      Mundane Tasks → AI Processing → Instant Results
+    </motion.div>
+
+    {/* Nodes with labels */}
+    <WorkflowNode delay={0} x={10} y={50} color="bg-primary" label="Data Entry" />
+    <WorkflowNode delay={0.3} x={30} y={20} color="bg-primary-light" label="Document Processing" />
+    <WorkflowNode delay={0.6} x={50} y={70} color="bg-primary" label="Email Responses" />
+    <WorkflowNode delay={0.9} x={70} y={30} color="bg-primary-light" label="Report Generation" />
+    <WorkflowNode delay={1.2} x={90} y={50} color="bg-primary" label="Task Complete" />
 
     {/* Connecting Lines */}
     <ConnectingLine delay={0.2} start={{ x: 12, y: 52 }} end={{ x: 30, y: 22 }} />
@@ -109,11 +122,11 @@ const WorkflowAnimation = () => (
     <ConnectingLine delay={0.8} start={{ x: 52, y: 72 }} end={{ x: 70, y: 32 }} />
     <ConnectingLine delay={1.1} start={{ x: 72, y: 32 }} end={{ x: 90, y: 52 }} />
 
-    {/* Floating Data Points */}
-    <FloatingDataPoint delay={0} x={20} y={40} />
-    <FloatingDataPoint delay={0.5} x={40} y={60} />
-    <FloatingDataPoint delay={1} x={60} y={50} />
-    <FloatingDataPoint delay={1.5} x={80} y={40} />
+    {/* Process Indicators */}
+    <ProcessedIndicator delay={0.7} x={20} y={40} />
+    <ProcessedIndicator delay={1.2} x={40} y={60} />
+    <ProcessedIndicator delay={1.7} x={60} y={50} />
+    <ProcessedIndicator delay={2.2} x={80} y={40} />
   </div>
 );
 
