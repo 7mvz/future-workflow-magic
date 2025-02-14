@@ -1,18 +1,14 @@
 
-import { useState } from "react";
-import { Menu, X } from "lucide-react";
+import { useState, useEffect } from "react";
+import { Menu, X, ArrowRight } from "lucide-react";
 import { Button } from "./ui/button";
 import { motion, AnimatePresence } from "framer-motion";
 import { scrollToSection } from "@/utils/scrollToSection";
 
 const navLinks = [
-  { name: "Home", sectionId: "hero" },
   { name: "About", sectionId: "about" },
   { name: "Services", sectionId: "services" },
-  { name: "Process", sectionId: "process" },
-  { name: "Industries", sectionId: "industries" },
   { name: "Pricing", sectionId: "pricing" },
-  { name: "Success Stories", sectionId: "success-stories" },
   { name: "FAQ", sectionId: "faq" },
 ];
 
@@ -23,7 +19,7 @@ const Navbar = () => {
   const toggleMenu = () => setIsOpen(!isOpen);
 
   // Update active section based on scroll position
-  useState(() => {
+  useEffect(() => {
     const handleScroll = () => {
       const sections = navLinks.map(link => document.getElementById(link.sectionId));
       const scrollPosition = window.scrollY + 100; // Offset for better accuracy
@@ -74,17 +70,33 @@ const Navbar = () => {
                 {link.name}
               </button>
             ))}
+            <Button
+              onClick={() => scrollToSection("pricing")}
+              className="gap-2"
+            >
+              Get Started for Free
+              <ArrowRight className="w-4 h-4" />
+            </Button>
           </div>
 
           {/* Mobile Menu Button */}
-          <Button
-            variant="ghost"
-            size="icon"
-            className="md:hidden"
-            onClick={toggleMenu}
-          >
-            {isOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
-          </Button>
+          <div className="md:hidden flex items-center gap-4">
+            <Button
+              onClick={() => scrollToSection("pricing")}
+              size="sm"
+              className="gap-2"
+            >
+              Get Started
+              <ArrowRight className="w-4 h-4" />
+            </Button>
+            <Button
+              variant="ghost"
+              size="icon"
+              onClick={toggleMenu}
+            >
+              {isOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+            </Button>
+          </div>
         </div>
 
         {/* Mobile Navigation */}
