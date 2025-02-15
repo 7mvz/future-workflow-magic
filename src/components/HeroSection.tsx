@@ -1,4 +1,3 @@
-
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, FileText, BrainCircuit, CheckCircle2 } from "lucide-react";
@@ -18,13 +17,12 @@ const WorkflowNode = ({ delay, x, y, color, label }: { delay: number; x: number;
   >
     <motion.div
       animate={{
-        scale: [1, 1.2, 1],
-        rotate: [0, 360],
+        scale: [1, 1.1, 1],
       }}
       transition={{
-        duration: 4,
+        duration: 2,
         repeat: Infinity,
-        ease: "linear"
+        ease: "easeInOut"
       }}
       className="relative"
     >
@@ -83,24 +81,44 @@ const ConnectingLine = ({ delay, start, end }: { delay: number; start: { x: numb
   </motion.div>
 );
 
-const ProcessingIndicator = () => (
-  <motion.div
-    animate={{ 
-      scale: [1, 1.2, 1],
-      opacity: [0.5, 1, 0.5]
-    }}
-    transition={{
-      duration: 1.5,
-      repeat: Infinity,
-      ease: "easeInOut"
-    }}
-    className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2"
-  >
-    <div className="text-sm font-semibold text-primary">
-      Processing...
-    </div>
-  </motion.div>
-);
+const ProcessStage = ({ stage }: { stage: number }) => {
+  if (stage === 0) return null;
+  
+  return (
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2"
+    >
+      {stage === 1 && (
+        <motion.div
+          animate={{ 
+            scale: [1, 1.1, 1],
+            opacity: [0.7, 1, 0.7]
+          }}
+          transition={{
+            duration: 1,
+            repeat: Infinity,
+            ease: "easeInOut"
+          }}
+          className="text-sm font-semibold text-primary"
+        >
+          Processing...
+        </motion.div>
+      )}
+      {stage === 2 && (
+        <motion.div
+          initial={{ scale: 0 }}
+          animate={{ scale: 1 }}
+          className="text-sm font-semibold text-primary"
+        >
+          Done!
+        </motion.div>
+      )}
+    </motion.div>
+  );
+};
 
 const IconWithTooltip = ({ Icon, label, className }: { Icon: any, label: string, className?: string }) => (
   <motion.div
@@ -118,32 +136,46 @@ const IconWithTooltip = ({ Icon, label, className }: { Icon: any, label: string,
   </motion.div>
 );
 
-const WorkflowAnimation = () => (
-  <div className="relative w-full h-40 mb-8">
-    {/* Stage nodes with distinct colors and icons */}
-    <div className="relative">
-      <WorkflowNode delay={0} x={15} y={50} color="bg-primary" label="Your Workflow" />
-      <IconWithTooltip Icon={FileText} label="Input your tasks" />
-    </div>
-    
-    <div className="relative">
-      <WorkflowNode delay={0.5} x={50} y={50} color="bg-primary-light" label="AI Automation" />
-      <IconWithTooltip Icon={BrainCircuit} label="AI processes and optimizes" className="text-primary-light" />
-    </div>
-    
-    <div className="relative">
-      <WorkflowNode delay={1} x={85} y={50} color="bg-primary" label="Work Transformed" />
-      <IconWithTooltip Icon={CheckCircle2} label="Tasks completed efficiently" />
-    </div>
+const WorkflowAnimation = () => {
+  const [stage, setStage] = React.useState(0);
 
-    {/* Connecting lines with arrows */}
-    <ConnectingLine delay={0.2} start={{ x: 17, y: 52 }} end={{ x: 50, y: 52 }} />
-    <ConnectingLine delay={0.7} start={{ x: 52, y: 52 }} end={{ x: 85, y: 52 }} />
+  React.useEffect(() => {
+    const timer1 = setTimeout(() => setStage(1), 1500); // Show "Processing..."
+    const timer2 = setTimeout(() => setStage(2), 3000); // Show "Done!"
+    
+    return () => {
+      clearTimeout(timer1);
+      clearTimeout(timer2);
+    };
+  }, []);
 
-    {/* Processing indicator */}
-    <ProcessingIndicator />
-  </div>
-);
+  return (
+    <div className="relative w-full h-40 mb-8">
+      {/* Stage nodes with distinct colors and icons */}
+      <div className="relative">
+        <WorkflowNode delay={0} x={15} y={50} color="bg-primary" label="Your Workflow" />
+        <IconWithTooltip Icon={FileText} label="Input your tasks" />
+      </div>
+      
+      <div className="relative">
+        <WorkflowNode delay={0.5} x={50} y={50} color="bg-primary-light" label="AI Automation" />
+        <IconWithTooltip Icon={BrainCircuit} label="AI processes and optimizes" className="text-primary-light" />
+      </div>
+      
+      <div className="relative">
+        <WorkflowNode delay={1} x={85} y={50} color="bg-primary" label="Work Transformed" />
+        <IconWithTooltip Icon={CheckCircle2} label="Tasks completed efficiently" />
+      </div>
+
+      {/* Connecting lines with arrows */}
+      <ConnectingLine delay={0.2} start={{ x: 17, y: 52 }} end={{ x: 50, y: 52 }} />
+      <ConnectingLine delay={0.7} start={{ x: 52, y: 52 }} end={{ x: 85, y: 52 }} />
+
+      {/* Process Stage Indicator */}
+      <ProcessStage stage={stage} />
+    </div>
+  );
+};
 
 const HeroSection = () => {
   return (
