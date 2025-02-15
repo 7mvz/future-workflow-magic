@@ -1,4 +1,3 @@
-
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
@@ -28,9 +27,9 @@ const WorkflowNode = ({ delay, x, y, color, label }: { delay: number; x: number;
       }}
       className="relative"
     >
-      <div className={`w-4 h-4 rounded-full ${color} blur-sm`} />
-      <div className={`w-3 h-3 rounded-full ${color} absolute top-0.5 left-0.5`} />
-      <div className="absolute -bottom-6 left-1/2 -translate-x-1/2 whitespace-nowrap text-xs text-gray-400">
+      <div className={`w-6 h-6 rounded-full ${color} blur-sm`} />
+      <div className={`w-4 h-4 rounded-full ${color} absolute top-1 left-1`} />
+      <div className="absolute -bottom-8 left-1/2 -translate-x-1/2 whitespace-nowrap text-sm font-medium text-gray-300">
         {label}
       </div>
     </motion.div>
@@ -61,7 +60,7 @@ const ConnectingLine = ({ delay, start, end }: { delay: number; start: { x: numb
       <motion.path
         d={`M0 0 L${end.x - start.x} ${end.y - start.y}`}
         stroke="url(#gradient)"
-        strokeWidth="2"
+        strokeWidth="3"
         fill="none"
         initial={{ pathLength: 0 }}
         animate={{ pathLength: 1 }}
@@ -77,56 +76,35 @@ const ConnectingLine = ({ delay, start, end }: { delay: number; start: { x: numb
   </motion.div>
 );
 
-const ProcessedIndicator = ({ delay, x, y }: { delay: number; x: number; y: number }) => (
+const ProcessingIndicator = () => (
   <motion.div
-    initial={{ opacity: 0, scale: 0 }}
     animate={{ 
-      opacity: [0, 1, 0],
-      scale: [0.8, 1.2, 0.8]
+      scale: [1, 1.2, 1],
+      opacity: [0.5, 1, 0.5]
     }}
     transition={{
       duration: 1.5,
-      delay,
       repeat: Infinity,
-      repeatDelay: 2
+      ease: "easeInOut"
     }}
-    className="absolute text-xs font-semibold text-primary"
-    style={{ left: `${x}%`, top: `${y}%` }}
+    className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2"
   >
-    Done in seconds!
+    <div className="text-sm font-semibold text-primary">
+      Processing...
+    </div>
   </motion.div>
 );
 
 const WorkflowAnimation = () => (
   <div className="relative w-full h-40 mb-8">
-    {/* Task Labels at the top */}
-    <motion.div
-      initial={{ opacity: 0, y: -10 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ delay: 0.2 }}
-      className="absolute top-0 left-0 w-full text-center text-sm font-medium text-primary"
-    >
-      Mundane Tasks → AI Processing → Instant Results
-    </motion.div>
+    <WorkflowNode delay={0} x={15} y={50} color="bg-primary" label="Mundane Tasks" />
+    <WorkflowNode delay={0.5} x={50} y={50} color="bg-primary-light" label="AI Processing" />
+    <WorkflowNode delay={1} x={85} y={50} color="bg-primary" label="Done!" />
 
-    {/* Nodes with labels */}
-    <WorkflowNode delay={0} x={10} y={50} color="bg-primary" label="Data Entry" />
-    <WorkflowNode delay={0.3} x={30} y={20} color="bg-primary-light" label="Document Processing" />
-    <WorkflowNode delay={0.6} x={50} y={70} color="bg-primary" label="Email Responses" />
-    <WorkflowNode delay={0.9} x={70} y={30} color="bg-primary-light" label="Report Generation" />
-    <WorkflowNode delay={1.2} x={90} y={50} color="bg-primary" label="Task Complete" />
+    <ConnectingLine delay={0.2} start={{ x: 17, y: 52 }} end={{ x: 50, y: 52 }} />
+    <ConnectingLine delay={0.7} start={{ x: 52, y: 52 }} end={{ x: 85, y: 52 }} />
 
-    {/* Connecting Lines */}
-    <ConnectingLine delay={0.2} start={{ x: 12, y: 52 }} end={{ x: 30, y: 22 }} />
-    <ConnectingLine delay={0.5} start={{ x: 32, y: 22 }} end={{ x: 50, y: 72 }} />
-    <ConnectingLine delay={0.8} start={{ x: 52, y: 72 }} end={{ x: 70, y: 32 }} />
-    <ConnectingLine delay={1.1} start={{ x: 72, y: 32 }} end={{ x: 90, y: 52 }} />
-
-    {/* Process Indicators */}
-    <ProcessedIndicator delay={0.7} x={20} y={40} />
-    <ProcessedIndicator delay={1.2} x={40} y={60} />
-    <ProcessedIndicator delay={1.7} x={60} y={50} />
-    <ProcessedIndicator delay={2.2} x={80} y={40} />
+    <ProcessingIndicator />
   </div>
 );
 
