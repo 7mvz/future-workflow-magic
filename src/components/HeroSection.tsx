@@ -1,6 +1,7 @@
+
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, FileText, BrainCircuit, CheckCircle2 } from "lucide-react";
 
 const WorkflowNode = ({ delay, x, y, color, label }: { delay: number; x: number; y: number; color: string; label: string }) => (
   <motion.div
@@ -72,6 +73,12 @@ const ConnectingLine = ({ delay, start, end }: { delay: number; start: { x: numb
           <stop offset="100%" stopColor="#b3a3f7" />
         </linearGradient>
       </defs>
+      <motion.path
+        d={`M${end.x - start.x - 10} ${(end.y - start.y) / 2 - 5} L${end.x - start.x} ${(end.y - start.y) / 2} L${end.x - start.x - 10} ${(end.y - start.y) / 2 + 5}`}
+        stroke="url(#gradient)"
+        strokeWidth="2"
+        fill="none"
+      />
     </svg>
   </motion.div>
 );
@@ -95,15 +102,45 @@ const ProcessingIndicator = () => (
   </motion.div>
 );
 
+const IconWithTooltip = ({ Icon, label, className }: { Icon: any, label: string, className?: string }) => (
+  <motion.div
+    whileHover={{ scale: 1.1 }}
+    className={`absolute -bottom-16 left-1/2 -translate-x-1/2 text-gray-400 hover:text-primary transition-colors ${className}`}
+  >
+    <Icon className="w-5 h-5" />
+    <motion.div
+      initial={{ opacity: 0, y: 10 }}
+      whileHover={{ opacity: 1, y: 0 }}
+      className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 px-2 py-1 bg-gray-800 rounded text-xs whitespace-nowrap"
+    >
+      {label}
+    </motion.div>
+  </motion.div>
+);
+
 const WorkflowAnimation = () => (
   <div className="relative w-full h-40 mb-8">
-    <WorkflowNode delay={0} x={15} y={50} color="bg-primary" label="Mundane Tasks" />
-    <WorkflowNode delay={0.5} x={50} y={50} color="bg-primary-light" label="AI Processing" />
-    <WorkflowNode delay={1} x={85} y={50} color="bg-primary" label="Done!" />
+    {/* Stage nodes with distinct colors and icons */}
+    <div className="relative">
+      <WorkflowNode delay={0} x={15} y={50} color="bg-primary" label="Your Workflow" />
+      <IconWithTooltip Icon={FileText} label="Input your tasks" />
+    </div>
+    
+    <div className="relative">
+      <WorkflowNode delay={0.5} x={50} y={50} color="bg-primary-light" label="AI Automation" />
+      <IconWithTooltip Icon={BrainCircuit} label="AI processes and optimizes" className="text-primary-light" />
+    </div>
+    
+    <div className="relative">
+      <WorkflowNode delay={1} x={85} y={50} color="bg-primary" label="Work Transformed" />
+      <IconWithTooltip Icon={CheckCircle2} label="Tasks completed efficiently" />
+    </div>
 
+    {/* Connecting lines with arrows */}
     <ConnectingLine delay={0.2} start={{ x: 17, y: 52 }} end={{ x: 50, y: 52 }} />
     <ConnectingLine delay={0.7} start={{ x: 52, y: 52 }} end={{ x: 85, y: 52 }} />
 
+    {/* Processing indicator */}
     <ProcessingIndicator />
   </div>
 );
