@@ -25,21 +25,41 @@ const ParticleBackground = () => {
           events: {
             onHover: {
               enable: true,
-              mode: "grab",
+              mode: "connect",
+              parallax: {
+                enable: false,
+                force: 60,
+                smooth: 10
+              }
             },
+            onClick: {
+              enable: true,
+              mode: "push"
+            },
+            resize: true
           },
           modes: {
+            connect: {
+              distance: 180,
+              links: {
+                opacity: 0.3
+              },
+              radius: 200
+            },
             grab: {
-              distance: 140,
+              distance: 180,
               links: {
                 opacity: 0.5,
               },
             },
+            push: {
+              quantity: 4
+            }
           },
         },
         particles: {
           color: {
-            value: "#9b87f5",
+            value: ["#9b87f5", "#b3a3f7", "#7e69ab"],
           },
           links: {
             color: "#9b87f5",
@@ -47,6 +67,13 @@ const ParticleBackground = () => {
             enable: true,
             opacity: 0.2,
             width: 1,
+            triangles: {
+              enable: true,
+              opacity: 0.05
+            }
+          },
+          collisions: {
+            enable: true,
           },
           move: {
             direction: "none",
@@ -55,27 +82,53 @@ const ParticleBackground = () => {
               default: "bounce",
             },
             random: false,
-            speed: 1,
+            speed: 0.8,
             straight: false,
           },
           number: {
             density: {
               enable: true,
-              area: 800,
+              area: 900,
             },
-            value: 80,
+            value: 70,
           },
           opacity: {
-            value: 0.5,
+            value: {
+              min: 0.3,
+              max: 0.6,
+            },
           },
           shape: {
-            type: "circle",
+            type: ["circle", "polygon"],
+            polygon: {
+              sides: 6
+            }
           },
           size: {
-            value: { min: 1, max: 3 },
+            value: { min: 2, max: 5 },
           },
         },
         detectRetina: true,
+        polygon: {
+          draw: {
+            enable: false,
+            stroke: {
+              color: "#9b87f5",
+              width: 0.5,
+              opacity: 0.2
+            }
+          },
+          enable: true,
+          move: {
+            radius: 10
+          },
+          inline: {
+            arrangement: "equidistant"
+          },
+          scale: 1,
+          type: "inside",
+          url: ""
+        }
       }}
     />
   );
