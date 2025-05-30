@@ -7,12 +7,10 @@ import IndustriesSection from "@/components/IndustriesSection";
 import PricingSection from "@/components/PricingSection";
 import SuccessStoriesSection from "@/components/SuccessStoriesSection";
 import FAQSection from "@/components/FAQSection";
-import ParticleBackground from "@/components/ParticleBackground";
 
 const Index = () => {
   return (
-    <main className="relative min-h-screen overflow-hidden">
-      <ParticleBackground />
+    <main className="relative min-h-screen">
       <section id="hero">
         <HeroSection />
       </section>

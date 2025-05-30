@@ -26,18 +26,18 @@ export default {
         background: "hsl(var(--background))",
         foreground: "hsl(var(--foreground))",
         primary: {
-          DEFAULT: "#9b87f5",
-          light: "#b3a3f7",
-          dark: "#7e69ab",
+          DEFAULT: "#8b5cf6",
+          light: "#a78bfa",
+          dark: "#7c3aed",
         },
         secondary: {
-          DEFAULT: "#1A1F2C",
-          light: "#2A2F3C",
-          dark: "#0A0F1C",
+          DEFAULT: "#f8fafc",
+          light: "#ffffff",
+          dark: "#e2e8f0",
         },
         accent: {
-          DEFAULT: "#F1F0FB",
-          foreground: "#1A1F2C",
+          DEFAULT: "#f1f5f9",
+          foreground: "#334155",
         },
       },
       fontFamily: {
@@ -73,11 +73,30 @@ export default {
             opacity: "1",
           },
         },
+        "float": {
+          "0%, 100%": {
+            transform: "translateY(0px)",
+          },
+          "50%": {
+            transform: "translateY(-10px)",
+          },
+        },
+        "pulse-soft": {
+          "0%, 100%": {
+            opacity: "0.8",
+          },
+          "50%": {
+            opacity: "0.4",
+          },
+        },
       },
       animation: {
         "text-reveal": "text-reveal 0.5s ease-out forwards",
         "fade-up": "fade-up 0.5s ease-out forwards",
         "fade-in": "fade-in 0.3s ease-out forwards",
+        "float": "float 6s ease-in-out infinite",
+        "float-delayed": "float 6s ease-in-out infinite 2s",
+        "pulse-soft": "pulse-soft 4s ease-in-out infinite",
       },
     },
   },

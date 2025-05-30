@@ -20,7 +20,7 @@ const socialLinks = [
 
 const Footer = () => {
   return (
-    <footer className="relative py-20 backdrop-blur-sm bg-transparent">
+    <footer className="relative py-20 bg-white/60 backdrop-blur-sm border-t border-gray-100">
       <div className="container mx-auto px-4">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-12">
           {/* Logo & Description */}
@@ -36,7 +36,7 @@ const Footer = () => {
             >
               SimplerWork
             </button>
-            <p className="text-gray-400 max-w-md leading-relaxed">
+            <p className="text-gray-600 max-w-md leading-relaxed">
               Experience the future of work with our AI-powered automation solutions. Transform your business operations and unlock new possibilities.
             </p>
             <div className="flex space-x-6">
@@ -46,7 +46,7 @@ const Footer = () => {
                   href={social.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-gray-400 hover:text-primary transition-colors"
+                  className="text-gray-500 hover:text-purple-600 transition-colors"
                   aria-label={social.name}
                 >
                   <social.icon className="w-5 h-5" />
@@ -68,7 +68,7 @@ const Footer = () => {
                 <li key={link.name}>
                   <button
                     onClick={() => scrollToSection(link.sectionId)}
-                    className="text-gray-400 hover:text-primary transition-colors"
+                    className="text-gray-600 hover:text-purple-600 transition-colors"
                   >
                     {link.name}
                   </button>
@@ -89,7 +89,7 @@ const Footer = () => {
               <li>
                 <a
                   href="mailto:team@simplerwork.co"
-                  className="text-gray-400 hover:text-primary transition-colors flex items-center gap-2"
+                  className="text-gray-600 hover:text-purple-600 transition-colors flex items-center gap-2"
                 >
                   <Mail className="w-4 h-4" />
                   team@simplerwork.co
@@ -98,7 +98,7 @@ const Footer = () => {
               <li>
                 <a
                   href="tel:+1234567890"
-                  className="text-gray-400 hover:text-primary transition-colors flex items-center gap-2"
+                  className="text-gray-600 hover:text-purple-600 transition-colors flex items-center gap-2"
                 >
                   <Phone className="w-4 h-4" />
                   +1 234 567 8900
@@ -113,22 +113,22 @@ const Footer = () => {
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           transition={{ duration: 0.6, delay: 0.3 }}
-          className="mt-16 pt-8 border-t border-white/5"
+          className="mt-16 pt-8 border-t border-gray-200"
         >
           <div className="flex flex-col md:flex-row justify-between items-center gap-4">
-            <p className="text-sm text-gray-400">
+            <p className="text-sm text-gray-500">
               © 2024 SimplerWork. All rights reserved.
             </p>
             <div className="flex gap-8 text-sm">
               <button
                 onClick={() => scrollToSection("terms")}
-                className="text-gray-400 hover:text-primary transition-colors"
+                className="text-gray-500 hover:text-purple-600 transition-colors"
               >
                 Terms & Conditions
               </button>
               <button
                 onClick={() => scrollToSection("privacy")}
-                className="text-gray-400 hover:text-primary transition-colors"
+                className="text-gray-500 hover:text-purple-600 transition-colors"
               >
                 Privacy Policy
               </button>

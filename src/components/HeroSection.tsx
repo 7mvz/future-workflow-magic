@@ -30,57 +30,57 @@ const ProcessVisualization = () => {
   };
 
   return (
-    <div className="relative w-full max-w-4xl mx-auto h-48 flex items-center justify-center rounded-xl mb-8 overflow-hidden">
-      {/* Enhanced background grid with gradient overlay */}
+    <div className="relative w-full max-w-4xl mx-auto h-48 flex items-center justify-center rounded-3xl mb-8 overflow-hidden card-elegant">
+      {/* Elegant background with subtle pattern */}
       <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-r from-secondary-dark/80 via-transparent to-secondary-dark/80 z-10" />
+        <div className="absolute inset-0 bg-gradient-to-r from-purple-50/50 via-transparent to-pink-50/50 z-10" />
         <motion.div 
           initial={{ opacity: 0 }}
-          animate={{ opacity: 0.1 }}
+          animate={{ opacity: 0.05 }}
           transition={{ duration: 1 }}
           className="w-full h-full"
         >
           <svg className="w-full h-full">
-            <pattern id="grid" x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse">
-              <rect width="20" height="20" fill="none" stroke="white" strokeWidth="0.5" />
+            <pattern id="elegantGrid" x="0" y="0" width="40" height="40" patternUnits="userSpaceOnUse">
+              <circle cx="20" cy="20" r="1" fill="currentColor" className="text-purple-400" />
             </pattern>
-            <rect width="100%" height="100%" fill="url(#grid)" />
+            <rect width="100%" height="100%" fill="url(#elegantGrid)" />
           </svg>
         </motion.div>
       </div>
 
-      {/* Main visualization with enhanced animations */}
+      {/* Main visualization with refined animations */}
       <div className="relative z-20 flex flex-col items-center w-full px-8 space-y-8">
-        {/* Progress bar with pulse effect */}
-        <div className="w-full max-w-lg bg-secondary-light h-3 rounded-full overflow-hidden">
+        {/* Elegant progress bar */}
+        <div className="w-full max-w-lg bg-gray-100 h-2 rounded-full overflow-hidden">
           <motion.div 
-            className="h-full bg-gradient-to-r from-primary via-primary-light to-primary rounded-full"
+            className="h-full bg-gradient-to-r from-purple-500 via-pink-500 to-purple-600 rounded-full"
             style={{ width: `${progress}%` }}
             initial={{ width: "0%" }}
             animate={{ 
               width: `${progress}%`,
-              boxShadow: isLoading ? ["0 0 10px rgba(155, 135, 245, 0.3)", "0 0 20px rgba(155, 135, 245, 0.5)"] : "none"
+              boxShadow: isLoading ? ["0 0 10px rgba(139, 92, 246, 0.3)", "0 0 20px rgba(139, 92, 246, 0.5)"] : "none"
             }}
             transition={{ duration: 0.3 }}
           />
         </div>
 
-        {/* Enhanced status icons with animations */}
+        {/* Refined status icons */}
         <motion.div 
-          className="flex items-center space-x-4"
+          className="flex items-center space-x-6"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
         >
           <motion.div
-            animate={{ scale: progress > 0 ? [1, 1.2, 1] : 1 }}
+            animate={{ scale: progress > 0 ? [1, 1.1, 1] : 1 }}
             transition={{ duration: 0.3 }}
           >
-            <Upload className={`w-6 h-6 ${progress > 0 ? 'text-primary' : 'text-gray-600'}`} />
+            <Upload className={`w-6 h-6 ${progress > 0 ? 'text-purple-600' : 'text-gray-400'}`} />
           </motion.div>
           
           <motion.div 
-            className="w-32 h-px bg-secondary-light"
+            className="w-24 h-px bg-gray-200"
             initial={{ scaleX: 0 }}
             animate={{ scaleX: 1 }}
             transition={{ duration: 0.5, delay: 0.2 }}
@@ -89,33 +89,33 @@ const ProcessVisualization = () => {
           <div className="relative">
             <motion.div 
               className={`w-8 h-8 rounded-full flex items-center justify-center
-                ${isLoading ? 'bg-primary/20 border border-primary' : 'bg-primary/20 border border-primary'}`}
+                ${isLoading ? 'bg-purple-50 border border-purple-200' : 'bg-purple-50 border border-purple-200'}`}
               animate={{ 
-                scale: isLoading ? [1, 1.1, 1] : 1,
+                scale: isLoading ? [1, 1.05, 1] : 1,
                 rotate: isLoading ? 360 : 0 
               }}
               transition={{ 
-                duration: 2,
+                duration: 3,
                 repeat: isLoading ? Infinity : 0,
                 ease: "linear"
               }}
             >
               {isLoading ? (
-                <div className="w-5 h-5 border-2 border-primary border-t-transparent rounded-full" />
+                <div className="w-4 h-4 border-2 border-purple-400 border-t-transparent rounded-full" />
               ) : (
                 <motion.div
                   initial={{ scale: 0 }}
                   animate={{ scale: 1 }}
                   transition={{ type: "spring", stiffness: 200 }}
                 >
-                  <CheckCircle className="w-5 h-5 text-primary" />
+                  <CheckCircle className="w-4 h-4 text-purple-600" />
                 </motion.div>
               )}
             </motion.div>
           </div>
           
           <motion.div 
-            className="w-32 h-px bg-secondary-light"
+            className="w-24 h-px bg-gray-200"
             initial={{ scaleX: 0 }}
             animate={{ scaleX: 1 }}
             transition={{ duration: 0.5, delay: 0.4 }}
@@ -123,24 +123,24 @@ const ProcessVisualization = () => {
           
           <motion.div
             animate={{ 
-              scale: progress === 100 ? [1, 1.2, 1] : 1,
-              opacity: progress === 100 ? 1 : 0.3
+              scale: progress === 100 ? [1, 1.1, 1] : 1,
+              opacity: progress === 100 ? 1 : 0.4
             }}
             transition={{ duration: 0.3 }}
           >
-            <CheckCircle className={`w-6 h-6 ${progress === 100 ? 'text-primary' : 'text-gray-600'}`} />
+            <CheckCircle className={`w-6 h-6 ${progress === 100 ? 'text-purple-600' : 'text-gray-400'}`} />
           </motion.div>
         </motion.div>
 
-        {/* Enhanced status label with smoother transitions */}
+        {/* Elegant status label */}
         <motion.div 
-          className="text-lg font-medium"
+          className="text-base font-medium"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.5 }}
         >
           {progress < 100 ? (
-            <div className="flex items-center space-x-2 text-gray-200">
+            <div className="flex items-center space-x-2 text-gray-600">
               <span>Transforming Your Workflow</span>
               <motion.div 
                 className="inline-flex space-x-1"
@@ -154,7 +154,7 @@ const ProcessVisualization = () => {
             </div>
           ) : (
             <motion.span
-              className="text-primary"
+              className="text-gradient"
               initial={{ scale: 0.9, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               transition={{ type: "spring", stiffness: 200 }}
@@ -164,11 +164,11 @@ const ProcessVisualization = () => {
           )}
         </motion.div>
 
-        {/* Enhanced reset button with hover effect */}
+        {/* Refined reset button */}
         <motion.button 
           onClick={resetAnimation}
-          className="absolute bottom-4 right-4 text-sm text-gray-400 hover:text-primary transition-colors"
-          whileHover={{ scale: 1.1, rotate: 360 }}
+          className="absolute bottom-4 right-4 text-sm text-gray-400 hover:text-purple-600 transition-colors"
+          whileHover={{ scale: 1.1 }}
           transition={{ duration: 0.3 }}
         >
           <Play className="w-4 h-4" />
@@ -180,30 +180,35 @@ const ProcessVisualization = () => {
 
 const HeroSection = () => {
   return (
-    <section className="min-h-screen flex flex-col items-center justify-center px-4 py-20">
+    <section className="min-h-screen flex flex-col items-center justify-center px-4 py-20 relative overflow-hidden">
+      {/* Floating gradient orbs */}
+      <div className="absolute top-20 left-10 w-96 h-96 gradient-orb rounded-full animate-float opacity-60" />
+      <div className="absolute bottom-20 right-10 w-80 h-80 gradient-orb-secondary rounded-full animate-float-delayed opacity-50" />
+      <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] gradient-orb rounded-full animate-pulse-soft opacity-30" />
+      
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
-        className="container max-w-4xl mx-auto text-center"
+        className="container max-w-4xl mx-auto text-center relative z-10"
       >
         <ProcessVisualization />
         
         <div className="heading-reveal mb-6">
-          <h1 className="font-display text-4xl md:text-6xl font-bold mb-6 leading-tight">
+          <h1 className="font-display text-4xl md:text-6xl font-bold mb-6 leading-tight text-gray-900">
             We elevate your business using{" "}
             <span className="text-gradient">Artificial Intelligence.</span>
           </h1>
         </div>
         <div className="heading-reveal mb-12">
-          <p className="text-lg md:text-xl text-gray-300 max-w-2xl mx-auto">
+          <p className="text-lg md:text-xl text-gray-600 max-w-2xl mx-auto">
             We elevate and grow organizations using top-tier AI solutions.
           </p>
         </div>
         <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
           <Button
             size="lg"
-            className="bg-primary hover:bg-primary-light text-white transition-all duration-300 group"
+            className="btn-gradient text-white transition-all duration-300 group shadow-lg shadow-purple-500/25"
           >
             Our Services
             <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
@@ -211,7 +216,7 @@ const HeroSection = () => {
           <Button
             size="lg"
             variant="outline"
-            className="border-primary text-primary hover:bg-primary/10"
+            className="border-purple-200 text-purple-700 hover:bg-purple-50 bg-white/80 backdrop-blur-sm"
           >
             Book a Call
           </Button>

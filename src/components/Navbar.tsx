@@ -41,7 +41,7 @@ const Navbar = () => {
   }, []);
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 backdrop-blur-sm bg-transparent">
+    <nav className="fixed top-0 left-0 right-0 z-50 backdrop-blur-lg bg-white/80 border-b border-white/20">
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-20">
           {/* Logo */}
@@ -61,10 +61,10 @@ const Navbar = () => {
                   scrollToSection(link.sectionId);
                   setActiveSection(link.sectionId);
                 }}
-                className={`text-sm font-medium transition-colors hover:text-primary ${
+                className={`text-sm font-medium transition-colors hover:text-purple-600 ${
                   activeSection === link.sectionId
-                    ? "text-primary"
-                    : "text-gray-400"
+                    ? "text-purple-600"
+                    : "text-gray-600"
                 }`}
               >
                 {link.name}
@@ -72,7 +72,7 @@ const Navbar = () => {
             ))}
             <Button
               onClick={() => scrollToSection("pricing")}
-              className="gap-2"
+              className="gap-2 btn-gradient text-white shadow-lg shadow-purple-500/25"
             >
               Get Started for Free
               <ArrowRight className="w-4 h-4" />
@@ -84,7 +84,7 @@ const Navbar = () => {
             <Button
               onClick={() => scrollToSection("pricing")}
               size="sm"
-              className="gap-2"
+              className="gap-2 btn-gradient text-white"
             >
               Get Started
               <ArrowRight className="w-4 h-4" />
@@ -93,6 +93,7 @@ const Navbar = () => {
               variant="ghost"
               size="icon"
               onClick={toggleMenu}
+              className="text-gray-600"
             >
               {isOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
             </Button>
@@ -117,10 +118,10 @@ const Navbar = () => {
                       setActiveSection(link.sectionId);
                       setIsOpen(false);
                     }}
-                    className={`block w-full text-left text-sm font-medium transition-colors hover:text-primary ${
+                    className={`block w-full text-left text-sm font-medium transition-colors hover:text-purple-600 ${
                       activeSection === link.sectionId
-                        ? "text-primary"
-                        : "text-gray-400"
+                        ? "text-purple-600"
+                        : "text-gray-600"
                     }`}
                   >
                     {link.name}
