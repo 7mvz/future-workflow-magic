@@ -71,7 +71,7 @@
   .gradient-orb-secondary {
     background: radial-gradient(circle at center, rgba(251, 191, 36, 0.2) 0%, rgba(245, 158, 11, 0.15) 30%, rgba(239, 68, 68, 0.1) 60%, transparent 100%);
   }
-</style>
+}
 
 @layer utilities {
   .text-gradient {
